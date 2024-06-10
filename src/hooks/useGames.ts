@@ -27,6 +27,7 @@ const useGames = () => {
    // State Hooks
   const [games, setGames] = useState<IGameObject[]>([]);
   const [error, setError] = useState("");
+  const [ isLoading, setLoading ] = useState(false);
 
   // Effect Hook
   useEffect(() => {
@@ -34,20 +35,26 @@ const useGames = () => {
     const controller = new AbortController();
 
     // request games list from API
+    setLoading(true);
     apiClient
       .get<IGamesResponse>("/games", { signal: controller.signal })
-      .then((res) => setGames(res.data.results))
+      .then((res) => {
+        setGames(res.data.results)
+        setLoading(false);
+      }
+      )
       .catch((err) => {
         // don't report cancelled error (why?)
         if (err instanceof CanceledError) return;
         setError(err.message)
+        setLoading(false)
       });
 
     // return cleanup function
     return () => {controller.abort()}
   }, []);
 
-  return { games, error }
+  return { games, error, isLoading }
 }
 
 
