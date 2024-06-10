@@ -1,35 +1,16 @@
 // REACT IMPORTS
-import { useEffect, useState } from "react";
 
-// PROJECT IMPORTS
-import apiClient from "../services/api-client";
+// THIRD-PARTY IMPORTS
 import { Text } from "@chakra-ui/react";
 
-//INTERFACES
-interface IGameObject {
-  id: number;
-  name: string;
-}
-
-interface IGamesResponse {
-  count: number;
-  results: IGameObject[];
-}
+// PROJECT IMPORTS
+import useGames from "../hooks/useGames";
 
 const GameGrid = () => {
-  // State Hooks
-  const [games, setGames] = useState<IGameObject[]>([]);
-  const [error, setError] = useState("");
+  // Get games list & any retrieval errors
+  const { games, error } = useGames();
 
-  // Effect Hook
-  useEffect(() => {
-    apiClient
-      .get<IGamesResponse>("/games")
-      .then((res) => setGames(res.data.results))
-      .catch((err) => setError(err.message));
-  }, []);
-
-  // Component Markup
+  // Component markup
   return (
     <>
       {error && <Text color="red">{error}</Text>}
