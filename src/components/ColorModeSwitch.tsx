@@ -1,5 +1,7 @@
+// THIRD-PARTY IMPORTS
 import { HStack, Switch, Text, useColorMode } from "@chakra-ui/react";
 
+// COMPONENT
 const ColorModeSwitch = () => {
   const { toggleColorMode, colorMode } = useColorMode();
 
@@ -15,4 +17,5 @@ const ColorModeSwitch = () => {
   );
 };
 
+// EXPORT COMPONENT
 export default ColorModeSwitch;

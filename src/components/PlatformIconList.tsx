@@ -1,3 +1,4 @@
+// THIRD-PARTY COMPONENTS
 import {
   FaWindows,
   FaPlaystation,
@@ -13,10 +14,12 @@ import { HStack, Icon, Text } from "@chakra-ui/react";
 import { Platform } from "../hooks/useGames";
 import { IconType } from "react-icons";
 
+// INTERFACES
 interface Props {
   platforms: Platform[];
 }
 
+// COMPONENT
 const PlatformIconList = ({ platforms }: Props) => {
   const iconMap: { [key: string]: IconType } = {
     pc: FaWindows,
@@ -43,4 +46,5 @@ const PlatformIconList = ({ platforms }: Props) => {
   );
 };
 
+// EXPORT COMPONENT
 export default PlatformIconList;

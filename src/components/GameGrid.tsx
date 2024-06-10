@@ -1,5 +1,3 @@
-// REACT IMPORTS
-
 // THIRD-PARTY IMPORTS
 import { SimpleGrid, Text } from "@chakra-ui/react";
 

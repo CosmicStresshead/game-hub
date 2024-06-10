@@ -1,8 +1,13 @@
+// REACT IMPORTS
 import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
+
+// THIRD-PARTY IMPORTS
 import { CanceledError } from "axios";
 
-//INTERFACES
+// PROJECT IMPORTS
+import apiClient from "../services/api-client";
+
+// INTERFACES
 export interface Platform {
   id: number;
   name: string;
@@ -23,6 +28,7 @@ interface IGamesResponse {
   results: IGameObject[];
 }
 
+// COMPONENT
 const useGames = () => {
    // State Hooks
   const [games, setGames] = useState<IGameObject[]>([]);
@@ -57,5 +63,5 @@ const useGames = () => {
   return { games, error, isLoading }
 }
 
-
+// EXPORT COMPONENT
 export default useGames;

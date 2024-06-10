@@ -1,3 +1,4 @@
+// COMPONENT
 const getCroppedImageUrl = (url: string) => {
   
   // find media/ in url
@@ -8,4 +9,5 @@ const getCroppedImageUrl = (url: string) => {
   return croppedURL;
 }
 
+// EXPORT COMPONENT
 export default getCroppedImageUrl;

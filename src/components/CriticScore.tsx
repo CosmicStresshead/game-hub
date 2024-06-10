@@ -1,9 +1,12 @@
+// THIRD-PARTY COMPONENTS
 import { Badge } from "@chakra-ui/react";
 
+// INTERFACES
 interface Props {
   score: number;
 }
 
+// COMPONENT
 const CriticScore = ({ score }: Props) => {
   let color = score >= 75 ? "green" : score >= 60 ? "yellow" : "";
 
@@ -20,4 +23,5 @@ const CriticScore = ({ score }: Props) => {
   );
 };
 
+// EXPORT COMPONENT
 export default CriticScore;
