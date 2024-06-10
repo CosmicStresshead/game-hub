@@ -27,7 +27,7 @@ const GameGrid = () => {
       .get<IGamesResponse>("/games")
       .then((res) => setGames(res.data.results))
       .catch((err) => setError(err.message));
-  });
+  }, []);
 
   // Component Markup
   return (
