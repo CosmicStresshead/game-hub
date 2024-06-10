@@ -14,7 +14,8 @@ export interface IGameObject {
   name: string;
   background_image: string;
   // accomodation for API design smell
-  parent_platforms: { platform: Platform }[]
+  parent_platforms: { platform: Platform }[];
+  metacritic: number;
 }
 
 interface IGamesResponse {
