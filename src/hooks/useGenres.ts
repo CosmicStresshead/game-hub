@@ -1,49 +1,14 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
+// PROJECT IMPORTS
+import useData from "./useData";
 
+// INTERFACES
 export interface IGenre {
   id: number;
   name: string;
 }
 
-export interface IGenresResponse {
-  count: number;
-  results: IGenre[];
-}
+// HOOK LOGIC
+const useGenres = () => useData<IGenre>("/genres");
 
-const useGenres = () => {
-    // State Hooks
-  const [genres, setGenres] = useState<IGenre[]>([]);
-  const [error, setError] = useState("");
-  const [ isLoading, setLoading ] = useState(false);
-
-  // Effect Hook
-  useEffect(() => {
-    // handle request cancellations
-    const controller = new AbortController();
-
-    // request games list from API
-    setLoading(true);
-    apiClient
-      .get<IGenresResponse>("/genres", { signal: controller.signal })
-      .then((res) => {
-        setGenres(res.data.results)
-        setLoading(false);
-      }
-      )
-      .catch((err) => {
-        // don't report cancelled error (why?)
-        if (err instanceof CanceledError) return;
-        setError(err.message)
-        setLoading(false)
-      });
-
-    // return cleanup function
-    return () => {controller.abort()}
-  }, []);
-
-  return { genres, error, isLoading }
-}
-
+// EXPORT HOOK
 export default useGenres;
