@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
+import { AxiosRequestConfig, CanceledError } from "axios";
 
 export interface IData {
   id: number;
@@ -12,7 +12,7 @@ export interface IResponse<T> {
   results: T[];
 }
 
-const useData = <T extends IData>(endpoint: string) => {
+const useData = <T extends IData>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: any[]) => {
 
     // State Hooks
   const [data, setData] = useState<T[]>([]);
@@ -27,7 +27,7 @@ const useData = <T extends IData>(endpoint: string) => {
     // request games list from API
     setLoading(true);
     apiClient
-      .get<IResponse<T>>(endpoint, { signal: controller.signal })
+      .get<IResponse<T>>(endpoint, { signal: controller.signal, ...requestConfig })
       .then((res) => {
         setData(res.data.results)
         setLoading(false);
@@ -42,7 +42,7 @@ const useData = <T extends IData>(endpoint: string) => {
 
     // return cleanup function
     return () => {controller.abort()}
-  }, []);
+  }, deps ? [...deps] : []);
 
   return { data, error, isLoading }
 }
