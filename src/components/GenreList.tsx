@@ -1,21 +1,31 @@
+// THIRD-PARY IMPORTS
+import { HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
+
 // PROJECT IMPORTS
 import useGenres from "../hooks/useGenres";
+import getCroppedImageUrl from "../services/image-url";
 
-interface IGenre {
-  id: number;
-  name: string;
-}
-
+// COMPONENT
 const GenreList = () => {
   const { data } = useGenres();
 
   return (
-    <ul>
+    <List>
       {data.map((genre) => (
-        <li key={genre.id}>{genre.name}</li>
+        <ListItem key={genre.id}>
+          <HStack paddingY="6px">
+            <Image
+              src={getCroppedImageUrl(genre.image_background)}
+              boxSize="40px"
+              borderRadius={8}
+            />
+            <Text fontSize="lg">{genre.name}</Text>
+          </HStack>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 };
 
+// EXPORT COMPONENT
 export default GenreList;
