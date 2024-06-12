@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // THIRD-PARTY IMPORTS
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Flex, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 
 // PROJECT IMPORTS
 import NavBar from "./components/NavBar";
@@ -50,7 +50,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main" marginX={4}>
-        <HStack gap={4} marginBottom={4}>
+        <Flex gap={4} marginBottom={4}>
           <PlatformSelector
             selectedPlatform={gameQuery.platform}
             onSelectPlatform={(platform) => {
@@ -63,7 +63,7 @@ function App() {
               setGameQuery({ ...gameQuery, sortOrder: sortOrder });
             }}
           />
-        </HStack>
+        </Flex>
         <GameGrid
           gameQuery={gameQuery}
           onClearSelection={() => {
