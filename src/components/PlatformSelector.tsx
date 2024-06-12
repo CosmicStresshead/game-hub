@@ -29,8 +29,8 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   // Output
   return (
     <VStack alignItems="left" gap={1}>
-      <Menu id="platformMenu">
-        <MenuButton marginBottom={2} as={Button} rightIcon={<BsChevronDown />}>
+      <Menu>
+        <MenuButton as={Button} rightIcon={<BsChevronDown />}>
           {selectedPlatform?.name || "All Platforms"}
         </MenuButton>
 
