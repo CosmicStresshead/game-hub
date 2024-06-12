@@ -1,6 +1,8 @@
 // COMPONENT
 const getCroppedImageUrl = (url: string) => {
-  
+  // if no image url
+  if (!url) return "";
+
   // find media/ in url
   const token = 'media/';
   const index = url.indexOf(token) + token.length;

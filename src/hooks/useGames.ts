@@ -16,7 +16,14 @@ export interface IGameObject {
 }
 
 // COMPONENT
-const useGames = (gameQuery: IGameQuery) => useData<IGameObject>('/games', { params: { genres: gameQuery.genre?.id, parent_platforms: gameQuery.platform?.id, ordering: gameQuery.sortBy }}, [gameQuery]);
+const useGames = (gameQuery: IGameQuery) => 
+  useData<IGameObject>(
+    '/games', 
+    { params: { 
+      genres: gameQuery.genre?.id, 
+      parent_platforms: gameQuery.platform?.id, 
+      ordering: gameQuery.sortOrder?.value } },
+    [gameQuery]);
 
 // EXPORT COMPONENT
 export default useGames;

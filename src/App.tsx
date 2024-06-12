@@ -9,7 +9,7 @@ import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import PlatformSelector from "./components/PlatformSelector";
-import SortSelector from "./components/SortSelector";
+import SortSelector, { ISortingOption } from "./components/SortSelector";
 import { IGenre } from "./hooks/useGenres";
 import { IPlatform } from "./hooks/usePlatforms";
 
@@ -17,7 +17,7 @@ import { IPlatform } from "./hooks/usePlatforms";
 export interface IGameQuery {
   genre: IGenre | null;
   platform: IPlatform | null;
-  sortBy: string | null;
+  sortOrder: ISortingOption | null;
 }
 
 // COMPONENT
@@ -59,8 +59,8 @@ function App() {
           />
           <SortSelector
             gameQuery={gameQuery}
-            onSelectSort={(sortBy: string) => {
-              setGameQuery({ ...gameQuery, sortBy: sortBy });
+            onSelectSort={(sortOrder) => {
+              setGameQuery({ ...gameQuery, sortOrder: sortOrder });
             }}
           />
         </HStack>
