@@ -1,8 +1,9 @@
 // THIRD-PARTY IMPORTS
-import { Button, Heading, SimpleGrid, Text, HStack } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 
 // PROJECT IMPORTS
 import useGames from "../hooks/useGames";
+import { IPlatform } from "../hooks/usePlatforms";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { IGenre } from "../hooks/useGenres";
@@ -10,13 +11,21 @@ import { IGenre } from "../hooks/useGenres";
 // INTERFACE
 interface Props {
   selectedGenre: IGenre | null;
+  selectedPlatform: IPlatform | null;
   onClearSelection: () => void;
 }
 
 // COMPONENT
-const GameGrid = ({ selectedGenre, onClearSelection }: Props) => {
+const GameGrid = ({
+  selectedGenre,
+  selectedPlatform,
+  onClearSelection,
+}: Props) => {
   // Get games list & any retrieval errors
-  const { data, error, isLoading } = useGames(selectedGenre);
+  const { data, error, isLoading } = useGames(
+    (selectedGenre = selectedGenre),
+    (selectedPlatform = selectedPlatform)
+  );
 
   // Skeleton list
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -28,14 +37,15 @@ const GameGrid = ({ selectedGenre, onClearSelection }: Props) => {
   // Component markup
   return (
     <>
-      {selectedGenre && (
+      {/* {selectedGenre && (
         <HStack gap={4}>
           <Heading>Genre: {selectedGenre.name}</Heading>
-          <Button size="xs" onClick={onClearSelection}>
-            Clear
+
+          <Button size="sm" onClick={onClearSelection}>
+            Clear Filters
           </Button>
         </HStack>
-      )}
+      )} */}
       {error && <Text color="red">{error}</Text>}
       <SimpleGrid
         margin={3}
