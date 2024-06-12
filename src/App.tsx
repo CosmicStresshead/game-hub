@@ -1,17 +1,27 @@
+// REACT IMPORTS
+import { useState } from "react";
+
+// THIRD-PARTY IMPORTS
 import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+
+// PROJECT IMPORTS
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
-import { useState } from "react";
 import { IGenre } from "./hooks/useGenres";
 import { IPlatform } from "./hooks/usePlatforms";
 import PlatformSelector from "./components/PlatformSelector";
 
+// INTERFACES
+export interface IGameQuery {
+  genre: IGenre | null;
+  platform: IPlatform | null;
+}
+
+// COMPONENT
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<IGenre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(
-    null
-  );
+  // Game Query State
+  const [gameQuery, setGameQuery] = useState<IGameQuery>({} as IGameQuery);
 
   return (
     <Grid
@@ -30,9 +40,9 @@ function App() {
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
           <GenreList
-            selectedGenre={selectedGenre}
+            selectedGenre={gameQuery.genre}
             onSelectGenre={(genre: IGenre) => {
-              setSelectedGenre(genre);
+              setGameQuery({ ...gameQuery, genre: genre });
             }}
           />
         </GridItem>
@@ -40,20 +50,16 @@ function App() {
       <GridItem area="main" marginX={4}>
         <HStack gap={4} marginBottom={2}>
           <PlatformSelector
-            selectedPlatform={selectedPlatform}
+            selectedPlatform={gameQuery.platform}
             onSelectPlatform={(platform) => {
-              setSelectedPlatform(platform);
+              setGameQuery({ ...gameQuery, platform: platform });
             }}
           />
         </HStack>
         <GameGrid
-          selectedGenre={selectedGenre}
-          selectedPlatform={selectedPlatform}
+          gameQuery={gameQuery}
           onClearSelection={() => {
-            setSelectedGenre(null);
-          }}
-          onSelectPlatform={(platform) => {
-            setSelectedPlatform(platform);
+            setGameQuery({} as IGameQuery);
           }}
         />
       </GridItem>

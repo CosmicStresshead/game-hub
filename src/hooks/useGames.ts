@@ -2,8 +2,9 @@
 import useData from "./useData";
 import { IGenre } from "./useGenres";
 import { IPlatform } from "./usePlatforms";
+import { IGameQuery } from "../App";
 
-// INTERFACES
+// INTERFACES 
 export interface IGameObject {
   id: number;
   name: string;
@@ -15,7 +16,7 @@ export interface IGameObject {
 }
 
 // COMPONENT
-const useGames = (selectedGenre: IGenre | null, selectedPlatform: IPlatform | null) => useData<IGameObject>('/games', { params: { genres: selectedGenre?.id, parent_platforms: selectedPlatform?.id }}, [selectedGenre, selectedPlatform]);
+const useGames = (gameQuery: IGameQuery) => useData<IGameObject>('/games', { params: { genres: gameQuery.genre?.id, parent_platforms: gameQuery.platform?.id }}, [gameQuery]);
 
 // EXPORT COMPONENT
 export default useGames;
