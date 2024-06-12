@@ -15,7 +15,7 @@ export interface IGameObject {
 }
 
 // COMPONENT
-const useGames = (selectedGenre: IGenre | null, selectedPlatform: IPlatform | null) => useData<IGameObject>('/games', { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id }}, [selectedGenre]);
+const useGames = (selectedGenre: IGenre | null, selectedPlatform: IPlatform | null) => useData<IGameObject>('/games', { params: { genres: selectedGenre?.id, parent_platforms: selectedPlatform?.id }}, [selectedGenre, selectedPlatform]);
 
 // EXPORT COMPONENT
 export default useGames;

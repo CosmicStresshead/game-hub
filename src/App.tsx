@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
@@ -37,17 +37,23 @@ function App() {
           />
         </GridItem>
       </Show>
-      <GridItem area="main">
-        <PlatformSelector
-          onPlatformSelected={(platform: IPlatform) => {
-            console.log(platform);
-          }}
-        />
+      <GridItem area="main" marginX={4}>
+        <HStack gap={4} marginBottom={2}>
+          <PlatformSelector
+            selectedPlatform={selectedPlatform}
+            onSelectPlatform={(platform) => {
+              setSelectedPlatform(platform);
+            }}
+          />
+        </HStack>
         <GameGrid
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
           onClearSelection={() => {
             setSelectedGenre(null);
+          }}
+          onSelectPlatform={(platform) => {
+            setSelectedPlatform(platform);
           }}
         />
       </GridItem>

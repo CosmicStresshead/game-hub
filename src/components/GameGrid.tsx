@@ -13,6 +13,7 @@ interface Props {
   selectedGenre: IGenre | null;
   selectedPlatform: IPlatform | null;
   onClearSelection: () => void;
+  onSelectPlatform: (platform: IPlatform) => void;
 }
 
 // COMPONENT
@@ -30,28 +31,11 @@ const GameGrid = ({
   // Skeleton list
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  // const filteredGames = data.filter((g) =>
-  //   selectedGenre ? g.genres.includes(selectedGenre) : g
-  // );
-
   // Component markup
   return (
     <>
-      {/* {selectedGenre && (
-        <HStack gap={4}>
-          <Heading>Genre: {selectedGenre.name}</Heading>
-
-          <Button size="sm" onClick={onClearSelection}>
-            Clear Filters
-          </Button>
-        </HStack>
-      )} */}
       {error && <Text color="red">{error}</Text>}
-      <SimpleGrid
-        margin={3}
-        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
-        spacing={5}
-      >
+      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} spacing={5}>
         {isLoading &&
           skeletons.map((skeletonIndex) => (
             <GameCardSkeleton key={skeletonIndex} />
