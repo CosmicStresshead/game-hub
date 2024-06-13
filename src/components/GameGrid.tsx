@@ -6,17 +6,14 @@ import { IGameQuery } from "../App";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import useGames from "../hooks/useGames";
-import { IGenre } from "../hooks/useGenres";
-import { IPlatform } from "../hooks/usePlatforms";
 
 // INTERFACE
 interface Props {
   gameQuery: IGameQuery;
-  onClearSelection: () => void;
 }
 
 // COMPONENT
-const GameGrid = ({ gameQuery, onClearSelection }: Props) => {
+const GameGrid = ({ gameQuery }: Props) => {
   // Get games list & any retrieval errors
   const { data, error, isLoading } = useGames(gameQuery);
 

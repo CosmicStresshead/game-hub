@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // THIRD-PARTY IMPORTS
-import { Flex, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Flex, Grid, GridItem, Show } from "@chakra-ui/react";
 
 // PROJECT IMPORTS
 import NavBar from "./components/NavBar";
@@ -12,6 +12,7 @@ import PlatformSelector from "./components/PlatformSelector";
 import SortSelector, { ISortingOption } from "./components/SortSelector";
 import { IGenre } from "./hooks/useGenres";
 import { IPlatform } from "./hooks/usePlatforms";
+import GameGridHeading from "./components/GameGridHeading";
 
 // INTERFACES
 export interface IGameQuery {
@@ -45,7 +46,7 @@ function App() {
         />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" paddingX={5}>
+        <GridItem area="aside" paddingX={5} minWidth="300px">
           <GenreList
             selectedGenre={gameQuery.genre}
             onSelectGenre={(genre: IGenre) => {
@@ -55,7 +56,13 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main" marginX={4}>
-        <Flex gap={4} marginBottom={4}>
+        <GameGridHeading
+          gameQuery={gameQuery}
+          onClearFilters={() =>
+            setGameQuery({ ...gameQuery, platform: null, genre: null })
+          }
+        />
+        <Flex gap={4} marginBottom={4} alignItems="center">
           <PlatformSelector
             selectedPlatform={gameQuery.platform}
             onSelectPlatform={(platform) => {
@@ -69,15 +76,11 @@ function App() {
             }}
           />
         </Flex>
-        <GameGrid
-          gameQuery={gameQuery}
-          onClearSelection={() => {
-            setGameQuery({} as IGameQuery);
-          }}
-        />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );
 }
 
+// EXPORT
 export default App;
