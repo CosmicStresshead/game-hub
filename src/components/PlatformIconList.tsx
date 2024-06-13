@@ -42,7 +42,7 @@ const PlatformIconList = ({ platforms }: Props) => {
 
   return (
     <HStack>
-      {platforms.slice(0, 6).map((platform) => (
+      {platforms.slice(0, 5).map((platform) => (
         <Icon
           title={platform.name}
           boxSize={6}
@@ -54,7 +54,7 @@ const PlatformIconList = ({ platforms }: Props) => {
       ))}
       {platforms.length > 6 && (
         <Text marginLeft={2} color="gray.400" fontSize="lg" fontWeight="bold">
-          (+{platforms.length - 6})
+          (+{platforms.length - 5})
         </Text>
       )}
     </HStack>
