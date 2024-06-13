@@ -13,6 +13,7 @@ export interface IGameObject {
   parent_platforms: { platform: IPlatform }[];
   metacritic: number;
   genres: IGenre[];
+  rating_top: number;
 }
 
 // COMPONENT
