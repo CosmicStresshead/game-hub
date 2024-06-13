@@ -1,5 +1,6 @@
 // PROJECT IMPORTS
 import useData from "./useData";
+import platformData from "../data/platforms";
 
 // INTERFACES
 export interface IPlatform {
@@ -9,7 +10,10 @@ export interface IPlatform {
 }
 
 // HOOK LOGIC
-const usePlatforms = () => useData<IPlatform>("/platforms/lists/parents");
-
+const usePlatforms = (live:boolean = false) => {
+  if (live) return useData<IPlatform>("/platforms/lists/parents")
+    // unless specified, use cached data
+  else return { data: platformData, isLoading: false, error: null }
+}
 // EXPORT HOOK
 export default usePlatforms;
