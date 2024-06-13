@@ -13,8 +13,8 @@ interface Props {
 // COMPONENT
 const GameGridHeading = ({ gameQuery, onClearFilters }: Props) => {
   return (
-    <VStack marginBottom={4} alignItems="start">
-      <Heading as="h1" fontSize="5xl">
+    <VStack marginBottom={6} alignItems="start">
+      <Heading as="h1" marginTop={0} paddingTop={0} fontSize="5xl">
         {gameQuery.genre?.name ? gameQuery.genre.name + " " : ""}
         {gameQuery.platform?.name ? gameQuery.platform?.name + " " : ""}
         Games
@@ -32,7 +32,7 @@ const GameGridHeading = ({ gameQuery, onClearFilters }: Props) => {
         )}
       </Heading>
       {gameQuery.searchText && (
-        <Text fontStyle="italic">
+        <Text fontStyle="italic" marginTop={2}>
           Showing results for: "{gameQuery.searchText}"
         </Text>
       )}

@@ -47,7 +47,7 @@ function App() {
         />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" paddingX={5} minWidth="300px">
+        <GridItem area="aside" paddingX={5}>
           <GenreList
             selectedGenre={gameQuery.genre}
             onSelectGenre={(genre: IGenre) => {
@@ -63,7 +63,7 @@ function App() {
             setGameQuery({ ...gameQuery, platform: null, genre: null })
           }
         />
-        <Flex gap={4} marginBottom={4} alignItems="center">
+        <Flex gap={4} marginBottom={8} alignItems="center">
           <PlatformSelector
             selectedPlatform={gameQuery.platform}
             onSelectPlatform={(platform) => {

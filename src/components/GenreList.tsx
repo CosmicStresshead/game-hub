@@ -2,6 +2,7 @@
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -28,10 +29,14 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
 
   return (
     <List>
+      <Heading marginBottom={3} marginTop={2} fontSize="2xl">
+        Genres
+      </Heading>
       {data.map((genre) => (
         <ListItem key={genre.id}>
           <HStack paddingY="6px" gap={3}>
             <Image
+              objectFit="cover"
               src={getCroppedImageUrl(genre.image_background)}
               boxSize="40px"
               borderRadius={8}
@@ -44,6 +49,8 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                   : "inherit"
               }
               fontSize="lg"
+              whiteSpace="normal"
+              textAlign="left"
               onClick={() => onSelectGenre(genre)}
             >
               {genre.name}
