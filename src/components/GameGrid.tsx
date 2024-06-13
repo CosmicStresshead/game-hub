@@ -20,21 +20,21 @@ const GameGrid = ({ gameQuery }: Props) => {
   // Skeleton list
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+  // Return error if any
+  if (error) return <Text color="red">{error}</Text>;
+
   // Component markup
   return (
-    <>
-      {error && <Text color="red">{error}</Text>}
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
-        {isLoading &&
-          skeletons.map((skeletonIndex) => (
-            <GameCardSkeleton key={skeletonIndex} />
-          ))}
-
-        {data.map((game) => (
-          <GameCard key={game.id} game={game} />
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
+      {isLoading &&
+        skeletons.map((skeletonIndex) => (
+          <GameCardSkeleton key={skeletonIndex} />
         ))}
-      </SimpleGrid>
-    </>
+
+      {data.map((game) => (
+        <GameCard key={game.id} game={game} />
+      ))}
+    </SimpleGrid>
   );
 };
 
