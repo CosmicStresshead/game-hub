@@ -15,7 +15,7 @@ interface Props {
 // COMPONENT
 const NavBar = ({ onSearch, gameQuery }: Props) => {
   return (
-    <HStack paddingX={4}>
+    <HStack paddingX={4} gap={5}>
       <Image src={logo} boxSize={16} />
       <SearchInput onSearch={onSearch} gameQuery={gameQuery} />
       <ColorModeSwitch />
