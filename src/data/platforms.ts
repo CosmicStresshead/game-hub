@@ -1,3 +1,8 @@
+// TODO: 
+// 1. Generate this data for caching
+// 2. Pull year_start, or calculate total games count, for most recent child platform
+// 3. Use these data to order platform appearance in PlatformIconList.tsx
+
 const platformData = [
 		{
 			"id": 1,
