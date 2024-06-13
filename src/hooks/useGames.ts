@@ -22,7 +22,8 @@ const useGames = (gameQuery: IGameQuery) =>
     { params: { 
       genres: gameQuery.genre?.id, 
       parent_platforms: gameQuery.platform?.id, 
-      ordering: gameQuery.sortOrder?.value } },
+      ordering: gameQuery.sortOrder?.value,
+      search: gameQuery.searchText } },
     [gameQuery]);
 
 // EXPORT COMPONENT
