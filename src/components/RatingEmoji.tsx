@@ -11,12 +11,27 @@ const RatingEmoji = ({ rating }: Props) => {
   if (rating < 3) return null;
 
   const emojiMap: { [key: number]: ImageProps } = {
-    3: { src: meh, alt: "meh", title: "Meh." },
-    4: { src: thumbsUp, alt: "recommended", title: "Recommended" },
-    5: { src: bullseye, alt: "exceptional", title: "Exceptional" },
+    3: {
+      src: meh,
+      alt: "meh",
+      title: "Meh.",
+      boxSize: "25px",
+    },
+    4: {
+      src: thumbsUp,
+      alt: "recommended",
+      title: "Recommended",
+      boxSize: "25px",
+    },
+    5: {
+      src: bullseye,
+      alt: "exceptional",
+      title: "Exceptional",
+      boxSize: "32px",
+    },
   };
 
-  return <Image boxSize="28px" {...emojiMap[rating]} />;
+  return <Image {...emojiMap[rating]} />;
 };
 
 export default RatingEmoji;
