@@ -43,6 +43,7 @@ function App() {
           onSearch={(searchText) => {
             setGameQuery({ ...gameQuery, searchText: searchText });
           }}
+          gameQuery={gameQuery}
         />
       </GridItem>
       <Show above="lg">
