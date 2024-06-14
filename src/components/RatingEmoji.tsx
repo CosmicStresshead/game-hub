@@ -27,7 +27,7 @@ const RatingEmoji = ({ rating }: Props) => {
       src: bullseye,
       alt: "exceptional",
       title: "Exceptional",
-      boxSize: "40px",
+      boxSize: "32px",
     },
   };
 
