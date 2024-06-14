@@ -65,26 +65,26 @@ function App() {
           }
         />
         <Flex gap={4} marginBottom={8} alignItems="center">
-          <GenreSelector
-            selectedGenre={gameQuery.genre}
-            onSelectGenre={(genre) => {
-              setGameQuery({ ...gameQuery, genre: genre });
-            }}
-          />
+          <Show below="lg">
+            <GenreSelector
+              selectedGenre={gameQuery.genre}
+              onSelectGenre={(genre) => {
+                setGameQuery({ ...gameQuery, genre: genre });
+              }}
+            />
+          </Show>
           <PlatformSelector
             selectedPlatform={gameQuery.platform}
             onSelectPlatform={(platform) => {
               setGameQuery({ ...gameQuery, platform: platform });
             }}
           />
-          <Show below="lg">
-            <SortSelector
-              gameQuery={gameQuery}
-              onSelectSort={(sortOrder) => {
-                setGameQuery({ ...gameQuery, sortOrder: sortOrder });
-              }}
-            />
-          </Show>
+          <SortSelector
+            gameQuery={gameQuery}
+            onSelectSort={(sortOrder) => {
+              setGameQuery({ ...gameQuery, sortOrder: sortOrder });
+            }}
+          />
         </Flex>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
