@@ -41,10 +41,21 @@ const PlatformIconList = ({ platforms, maxIcons = 3 }: Props) => {
     "commodore-amiga": FaKeyboard,
   };
 
+  const platformsDisplayed = platforms.slice(0, maxIcons);
+  const platformsHidden = platforms.slice(maxIcons);
+  const getHiddenToolTip = (platformsHidden: IPlatform[]) => {
+    let tooltip = "";
+    platformsHidden.forEach((platform, index) => {
+      tooltip +=
+        platform.name + (index !== platformsHidden.length - 1 ? ", " : "");
+    });
+    return tooltip;
+  };
+
   return (
     <VStack alignItems="left">
       <HStack maxHeight={6} flexFlow="column-wrap" overflowY="hidden">
-        {platforms.slice(0, maxIcons).map((platform) => (
+        {platformsDisplayed.map((platform) => (
           <Icon
             title={platform.name}
             boxSize={6}
@@ -53,9 +64,15 @@ const PlatformIconList = ({ platforms, maxIcons = 3 }: Props) => {
             color={"gray.500"}
           />
         ))}
-        {platforms.length > maxIcons && (
-          <Text boxSize={6} color="gray.400" fontSize="sm" fontWeight="bold">
-            +{platforms.length - maxIcons}
+        {platformsHidden.length && (
+          <Text
+            title={getHiddenToolTip(platformsHidden)}
+            boxSize={6}
+            color="gray.400"
+            fontSize="md"
+            fontWeight="bold"
+          >
+            +{platformsHidden.length}
           </Text>
         )}
       </HStack>
