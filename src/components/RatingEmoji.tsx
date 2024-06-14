@@ -15,19 +15,19 @@ const RatingEmoji = ({ rating }: Props) => {
       src: meh,
       alt: "meh",
       title: "Meh.",
-      boxSize: "25px",
+      boxSize: "32px",
     },
     4: {
       src: thumbsUp,
       alt: "recommended",
       title: "Recommended",
-      boxSize: "25px",
+      boxSize: "32px",
     },
     5: {
       src: bullseye,
       alt: "exceptional",
       title: "Exceptional",
-      boxSize: "32px",
+      boxSize: "40px",
     },
   };
 

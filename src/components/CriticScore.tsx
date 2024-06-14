@@ -12,6 +12,7 @@ const CriticScore = ({ score }: Props) => {
 
   return (
     <Badge
+      title="Metacritic score"
       colorScheme={color}
       fontSize="14px"
       paddingY={1}
