@@ -13,6 +13,7 @@ import SortSelector, { ISortingOption } from "./components/SortSelector";
 import { IGenre } from "./hooks/useGenres";
 import { IPlatform } from "./hooks/usePlatforms";
 import GameGridHeading from "./components/GameGridHeading";
+import GenreSelector from "./components/GenreSelector";
 
 // INTERFACES
 export interface IGameQuery {
@@ -38,7 +39,7 @@ function App() {
         lg: "225px 1fr",
       }}
     >
-      <GridItem area="nav" paddingBottom={3}>
+      <GridItem area="nav" paddingY={3}>
         <NavBar
           onSearch={(searchText) => {
             setGameQuery({ ...gameQuery, searchText: searchText });
@@ -64,18 +65,26 @@ function App() {
           }
         />
         <Flex gap={4} marginBottom={8} alignItems="center">
+          <GenreSelector
+            selectedGenre={gameQuery.genre}
+            onSelectGenre={(genre) => {
+              setGameQuery({ ...gameQuery, genre: genre });
+            }}
+          />
           <PlatformSelector
             selectedPlatform={gameQuery.platform}
             onSelectPlatform={(platform) => {
               setGameQuery({ ...gameQuery, platform: platform });
             }}
           />
-          <SortSelector
-            gameQuery={gameQuery}
-            onSelectSort={(sortOrder) => {
-              setGameQuery({ ...gameQuery, sortOrder: sortOrder });
-            }}
-          />
+          <Show below="lg">
+            <SortSelector
+              gameQuery={gameQuery}
+              onSelectSort={(sortOrder) => {
+                setGameQuery({ ...gameQuery, sortOrder: sortOrder });
+              }}
+            />
+          </Show>
         </Flex>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
